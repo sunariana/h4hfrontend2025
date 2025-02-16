@@ -15,6 +15,12 @@ export default function AudioRecorder() {
       },
       blobPropertyBag: { type: "audio/wav" },
     });
+    useEffect(() => {
+        window.addEventListener("keydown", handleKeyDown);
+        return () => {
+          window.removeEventListener("keydown", handleKeyDown);
+        };
+      }, [startRecording]);
 
     useEffect(()=>{
     const talk = new SpeechSynthesisUtterance(
@@ -28,6 +34,13 @@ export default function AudioRecorder() {
 
   const [isUploading, setIsUploading] = useState(false);
   const [uploadStatus, setUploadStatus] = useState("");
+
+  const handleKeyDown = (e) => {
+    if (e.code === "Space") {
+      e.preventDefault();
+      clickButton();
+    }
+  };
 
   const clickButton = () => {
     if (status !== "recording") {

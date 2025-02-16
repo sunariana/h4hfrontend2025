@@ -9,27 +9,42 @@ import dynamic from "next/dynamic";
 
 const AudioRecorder = dynamic(() => import("@/components/AudioRecorder"), { ssr: false });
 
+
+
 export default function Home() {
   const [text, setText] = useState("record");
   const [audioStream, setAudioStream] = useState(null);
   const [count, setCount] = useState(0);
   const socketRef = useRef(null);
   const mediaRecorderRef = useRef(null);
-
-
   
-  useEffect(() => {
-    
-    const talk = new SpeechSynthesisUtterance(
-      "Hello there! I'm your flight booking assistant! How can I help you?"
-    );
-    
 
+
+  const speakGreeting = () => {
+    const talk = new SpeechSynthesisUtterance("Hello, I'm your flight booking assistant! How can I help you?");
+  
+    // Wait for voices to be loaded
     const voices = speechSynthesis.getVoices();
-    talk.voice = voices[0];
-    console.log("testing")
-    speechSynthesis.speak(talk);
-    
+    if (voices.length > 0) {
+      talk.voice = voices[0]; // Use the first available voice
+      speechSynthesis.speak(talk);
+    } else {
+      // If voices aren't loaded yet, wait for the 'voiceschanged' event
+      speechSynthesis.onvoiceschanged = () => {
+        const voices = speechSynthesis.getVoices();
+        if (voices.length > 0) {
+          talk.voice = voices[0]; // Use the first available voice
+          speechSynthesis.speak(talk);
+        } else {
+          console.error("No voices available.");
+        }
+      };
+    }
+  };
+  
+  // Use useEffect to speak the greeting when the component mounts
+  useEffect(() => {
+    speakGreeting();
   }, []);
 
   const clickButton = async () => {
