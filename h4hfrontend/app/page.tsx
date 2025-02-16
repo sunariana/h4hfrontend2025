@@ -3,9 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import "./globals.css";
-import React from "react";
-import { useEffect, useState, useRef } from "react";
-
+import React, { useState, useRef, useEffect } from "react";
 
 export default function Home() {
   const [text, setText] = useState("record");
@@ -34,15 +32,16 @@ export default function Home() {
     socketRef.current.onclose = () => {
       console.log("WebSocket connection closed");
     };
-  }, [])
+  }, []);
 
   const clickButton = async () => {
     if (count == 0) {
       setCount(count + 1);
       speak();
     }
-    if (text == "record") {
-      // create a websocket connection with backend to obtain voice of user
+
+    if (text === "record") {
+      // Start recording logic
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
           audio: true,
@@ -53,10 +52,7 @@ export default function Home() {
 
         mediaRecorder.ondataavailable = (event) => {
           if (event.data && event.data.size > 0) {
-            if (
-              socketRef.current &&
-              socketRef.current.readyState === WebSocket.OPEN
-            ) {
+            if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
               socketRef.current.send(event.data);
               console.log("Sent audio chunk:", event.data);
             }
@@ -66,19 +62,19 @@ export default function Home() {
       } catch (error) {
         console.error(error);
       }
+      setText("recording"); // Change button text to "recording"
     } else {
-      // end the websocket connection
-     if (audioStream) {
-       const tracks = audioStream.getTracks();
-       for (let track of tracks) {
-         track.stop();
-         console.log(`Stopped track: ${track.kind}`);
-       }
-       setAudioStream(null);
-     }
+      // Stop recording logic
+      if (audioStream) {
+        const tracks = audioStream.getTracks();
+        for (let track of tracks) {
+          track.stop();
+          console.log(`Stopped track: ${track.kind}`);
+        }
+        setAudioStream(null);
+      }
+      setText("record"); // Change button text back to "record"
     }
-    let newText = text === "record" ? "stop recording" : "record";
-    setText(newText);
   };
 
   const speak = () => {
@@ -138,6 +134,7 @@ export default function Home() {
             <button
               className="group relative w-[400px] h-[400px] flex-shrink-0 rounded-full focus:outline-none focus:ring-2 focus:ring-[#6e93dd] focus:ring-offset-4 focus:ring-offset-[#25406e] overflow-hidden"
               aria-label="Begin flight assistance"
+              onClick={clickButton} // Attach the click handler
             >
               {/* Base circle */}
               <div className="absolute inset-0 rounded-full border-4 border-[#6e93dd] bg-[#6e93dd]/20 transition-all duration-500 ease-out group-hover:bg-[#6e93dd]/30" />
@@ -151,6 +148,10 @@ export default function Home() {
 
               {/* Pulsing inner circle */}
               <div className="absolute inset-0 rounded-full bg-[#6e93dd]/10 group-hover:animate-pulse" />
+              {/* Add text to the center of the button */}
+              <span className="absolute inset-0 flex items-center justify-center text-white text-3xl font-bold">
+                {text}
+              </span>
             </button>
 
             <div> 

@@ -6,44 +6,44 @@ const About = () => {
   const teamMembers = [
     {
       name: "Lucas",
-      role: "backend demon",
+      role: "Backend Demon",
       description: "carried us so hard insert here insert here insert insert insert insert",
-      imageUrl: "/placeholder.svg",
+      imageUrl: "/lucas.png",
       imagePosition: "left",
     },
     {
       name: "Jason",
-      role: "Backend demon",
+      role: "Backend Demon",
       description: "carried us so hard insert here insert here insert insert insert insert",
-      imageUrl: "/placeholder.svg",
+      imageUrl: "/jason.svg",
       imagePosition: "right",
     },
     {
       name: "Nathan",
       role: "Backend Demon",
       description: "carried us so hard insert here insert here insert insert insert insert",
-      imageUrl: "/placeholder.svg",
+      imageUrl: "/nathan.png",
       imagePosition: "left",
     },
     {
       name: "Ariana",
-      role: "Front End demon",
+      role: "Frontend Demon",
       description: "carried us so hard insert here insert here insert insert insert insert",
-      imageUrl: "/placeholder.svg",
+      imageUrl: "/ariana.png",
       imagePosition: "right",
     },
     {
       name: "Sophia",
       role: "UX/UI designer",
       description: "carried us so hard insert here insert here insert insert insert insert",
-      imageUrl: "/placeholder.svg",
+      imageUrl: "/sophia.png",
       imagePosition: "left",
     },
     {
       name: "Vikram",
-      role: "ECEN100",
+      role: "Researcher/Analyst",
       description: "carried us so hard insert here insert here insert insert insert insert",
-      imageUrl: "/placeholder.svg",
+      imageUrl: "/vikram.svg",
       imagePosition: "right",
     },
   ]
@@ -95,11 +95,16 @@ const About = () => {
                   {/* Member Image */}
                   <div className="relative aspect-[2/1] w-full max-w-md overflow-hidden md:w-1/2 md:mr-150">
                     <div
-                      className={`absolute inset-0 rounded-[100px] bg-opacity-50 ${
-                        index % 2 === 0 ? "bg-pink-300" : "bg-blue-300"
+                      className={`absolute inset-0 rounded-[20px] bg-opacity-50 ${
+                        index % 2 === 0 ? "#0000" : "#0000"
                       }`}
                     >
-                      <Image src={member.imageUrl || "/globe.svg"} alt={member.name} fill className="object-cover" />
+                      <Image 
+                        src={member.imageUrl || "/globe.svg"} 
+                        alt={member.name} 
+                        width={800} // You can adjust the width
+                        height={800} // Adjust height accordingly
+                      />
                     </div>
                   </div>
                   {/* Member Details */}
@@ -114,6 +119,36 @@ const About = () => {
           </div>
         </div>
       </main>
+
+      {/* Background Images */}
+            <Image
+              src="/clouds2.jpg"
+              alt="Decorative clouds"
+              width={360}
+              height={360}
+              className="absolute bottom-10 right-10 w-90 h-90 object-cover"
+            />
+            <Image
+              src="/clouds.jpg"
+              alt="Decorative clouds"
+              width={360}
+              height={360}
+              className="absolute top-20 right-10 w-90 h-90 object-cover"
+            />
+            <Image
+              src="/clouds.jpg"
+              alt="Decorative clouds"
+              width={360}
+              height={360}
+              className="absolute bottom-10 left-10 w-90 h-90 object-cover"
+            />
+            <Image
+              src="/clouds2.jpg"
+              alt="Decorative clouds"
+              width={360}
+              height={360}
+              className="absolute top-20 left-10 w-90 h-90 object-cover"
+            />
     </div>
   );
 };

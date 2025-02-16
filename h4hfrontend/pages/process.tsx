@@ -88,12 +88,24 @@ const Process = () => {
         </div>
 
         <div className="mt-24 space-y-16">
-          <section>
-            <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-center">
-              Our <span className="text-[#F5D3B2]">Audience</span>
-            </h2>
-            {/* Add audience content here */}
-          </section>
+            <section>
+                <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-center">
+                Our <span className="text-[#F5D3B2]">Audience</span>
+                </h2>
+            </section>
+
+            {/* Two columns layout */}
+            <div className="flex gap-2">
+                {/* Left Column - 30% width */}
+                <div className="w-[30%] bg-gray-800 p-4 text-white justify-center">
+                    <h3 className="text-9xl font-bold">70%</h3>
+                </div>
+
+                {/* Right Column - 70% width */}
+                <div className="w-[70%] bg-gray-700 p-10 text-white justify-left">
+                    <h3 className="text-xl font-medium">of websites in certain industries inaccessible to the vision-impaired according to the Deque Systems</h3>
+                </div>
+            </div>
         </div>
 
         <div className="mt-24 space-y-16">
@@ -101,25 +113,78 @@ const Process = () => {
             <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-center">
               Our <span className="text-[#F5D3B2]">User Flow</span>
             </h2>
-            {/* Add wireframe content here */}
+            <div className="flex justify-center items-center">
+                <Image
+                    src="/userflow.jpg"
+                    alt="Design of our user flow."
+                    width={1000}
+                    height={1000}
+                />
+            </div>
           </section>
         </div>
 
         <div className="mt-24 space-y-16">
           <section>
-            <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-center">
+            <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-center pb-10">
               Our <span className="text-[#F5D3B2]">Wireframe and UI</span>
             </h2>
-            {/* Add wireframe content here */}
+            {/* Two columns layout */}
+            <div className="flex gap-2">
+                {/* Left Column - 55% width */}
+                <div className="w-[55%] flex justify-center items-center">
+                    <Image
+                        src="/UI.png"
+                        alt="Design of our user flow."
+                        width={500}
+                        height={500}
+                    />
+                </div>
+
+                {/* Right Column - 45% width */}
+                <div className="flex w-[45%] bg-gray-700 p-10 text-white justify-left">
+                    <h3 className="text-4xl font-medium"> font: <span className="font-bold">quicksand</span>/quicksand</h3>
+                </div>
+            </div>
+            <div className="flex justify-center items-center pt-10">
+                <Image 
+                    src="/wireframe.png"
+                    alt="A picture of our wireframe and how our pages are linked."
+                    width={500}
+                    height={500}
+                />
+            </div>
           </section>
         </div>
 
-        <div className="mt-24 space-y-16">
+        <div className="mt-24 space-y-16 pb-20">
           <section>
             <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-center">
               Our <span className="text-[#F5D3B2]">Creation and Demo</span>
             </h2>
-            {/* Add wireframe content here */}
+            <div className="flex">
+                {/* Left Column - 35% width */}
+                <div className="w-[45%] bg-gray-700 p-10 text-white">
+                    <h3 className="text-3xl font-bold pt-10 pb-3">What Visionairy Does:</h3>
+                    <p className="text-2xl font-medium">LALALALALA</p>
+                </div>
+
+                {/* Right Column - 65% width */}
+                <div className="w-[55%] flex justify-center items-center">
+                    {/* Embedded Video */}
+                    <div className="w-full h-full max-w-xl pt-20">
+                    <iframe
+                        width="100%"
+                        height="315"
+                        src="https://www.youtube.com/embed/H6q6pYZ9Fho?si=Yd3ip1K3NSOKXNnk"  // Replace VIDEO_ID with your actual YouTube video ID
+                        title="Video"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                    ></iframe>
+                    </div>
+                </div>
+            </div>
           </section>
         </div>
       </main>
