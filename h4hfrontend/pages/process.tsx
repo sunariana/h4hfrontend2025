@@ -166,22 +166,20 @@ const Process = () => {
                 {/* Left Column - 35% width */}
                 <div className="w-[45%] bg-gray-700 p-10 text-white">
                     <h3 className="text-3xl font-bold pt-10 pb-3">What Visionairy Does:</h3>
-                    <p className="text-2xl font-medium">LALALALALA</p>
+                    <p className="text-2xl font-medium pb-3">Visionairy is a service designed to help visually impaired individuals 
+                    <span className="font-bold"> plan their trips effortlessly </span>. Users can simply describe the journey they want to take, and we’ll find the best flight options to make it a reality. 
+                    </p>
+                    <p className="text-2xl font-medium">The choices are then read aloud, allowing users to respond and refine their selection. This experience mirrors speaking with a travel agent—but in a more seamless and intuitive way.</p>
                 </div>
 
                 {/* Right Column - 65% width */}
                 <div className="w-[55%] flex justify-center items-center">
                     {/* Embedded Video */}
                     <div className="w-full h-full max-w-xl pt-20">
-                    <iframe
-                        width="100%"
-                        height="315"
-                        src="https://www.youtube.com/embed/H6q6pYZ9Fho?si=Yd3ip1K3NSOKXNnk"  // Replace VIDEO_ID with your actual YouTube video ID
-                        title="Video"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                    ></iframe>
+                      <video width="100%" height="315" controls>
+                          <source src="/demo.mp4" type="video/mp4" />
+                          Your browser does not support the video tag.
+                      </video>
                     </div>
                 </div>
             </div>
