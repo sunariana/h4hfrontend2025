@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import "./globals.css";
 import React from "react";
 import { useEffect, useState, useRef } from "react";
@@ -92,12 +93,21 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#25406e] text-white relative overflow-hidden">
+    <div className="min-h-screen bg-[#25406e] text-white relative overflow-hidden font-sans">
       {/* Navigation */}
       <nav className="flex justify-between items-center p-6">
-        <Link href="/" className="text-2xl font-medium">
-          Visionairy
-        </Link>
+        <div className="flex items-center gap-2">
+          <Image 
+            src="/logo.png"
+            alt="Visionary Logo"
+            width={40}
+            height={40}
+            className="object-contain"
+          />
+          <Link href="/" className="text-2xl font-bold">
+            Visionairy
+          </Link>
+        </div>
         <div className="flex gap-8">
           <Link href="/process" className="hover:opacity-80 transition-opacity">
             process
@@ -109,13 +119,13 @@ export default function Home() {
       </nav>
 
       {/* Main Content */}
-      <main className="container mx-auto px-6 flex items-center justify-center min-h-[calc(100vh-160px)]">
+      <main className="container mx-auto px-6 flex items-center justify-center min-h-[calc(100vh-220px)]">
         <div className="flex items-center justify-between max-w-6xl w-full">
           <div className="max-w-xl space-y-6 pr-8">
-            <h1 className="text-4xl lg:text-5xl font-medium leading-tight">
+            <h1 className="leading-tight font-bold text-5xl">
               Welcome to Visionairy,
               <br />
-              Your Virtual <span className="text-[#6e93dd]">Flight Assistant!</span>
+              Your Virtual <span className="text-[#F5D3B2]">Flight Assistant!</span>
             </h1>
             <p className="text-lg lg:text-xl">
               We provide service to the visually impaired in helping book a flight to travel around the world! Click the
@@ -143,8 +153,18 @@ export default function Home() {
               <div className="absolute inset-0 rounded-full bg-[#6e93dd]/10 group-hover:animate-pulse" />
             </button>
 
-            {/* Session Timer */}
-            <div className="mt-4 text-lg">session length: 00: 00</div>
+            <div> 
+              <img
+                src="/squiggle.png"
+                alt="Description"
+                className="absolute bottom-0 right-0 w-90 h-90 object-cover"
+              />
+              <img
+                src="/planetrail.png"
+                alt="Description"
+                className="absolute bottom-0 left-16 w-48 h-48 object-cover"
+              />
+            </div>
           </div>
         </div>
       </main>
