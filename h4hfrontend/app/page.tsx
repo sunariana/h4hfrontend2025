@@ -5,6 +5,10 @@ import Image from "next/image";
 import "./globals.css";
 import React, { useState, useRef, useEffect } from "react";
 
+import dynamic from "next/dynamic";
+
+const AudioRecorder = dynamic(() => import("@/components/AudioRecorder"), { ssr: false });
+
 export default function Home() {
   const [text, setText] = useState("record");
   const [audioStream, setAudioStream] = useState(null);
@@ -12,26 +16,20 @@ export default function Home() {
   const socketRef = useRef(null);
   const mediaRecorderRef = useRef(null);
 
+
+  
   useEffect(() => {
-    // const ws = new WebSocket("http://localhost:3000/ws/audio");
-    socketRef.current = new WebSocket("ws://localhost:3000/ws/audio");
-    socketRef.current.binaryType = "arraybuffer";
+    
+    const talk = new SpeechSynthesisUtterance(
+      "Hello there! I'm your flight booking assistant! How can I help you?"
+    );
+    
 
-    socketRef.current.onopen = () => {
-      console.log("WebSocket connected");
-    };
-
-    socketRef.current.onmessage = (event) => {
-      console.log("Received from backend:", event.data);
-    };
-
-    socketRef.current.onerror = (error) => {
-      console.error("WebSocket error:", error);
-    };
-
-    socketRef.current.onclose = () => {
-      console.log("WebSocket connection closed");
-    };
+    const voices = speechSynthesis.getVoices();
+    talk.voice = voices[0];
+    console.log("testing")
+    speechSynthesis.speak(talk);
+    
   }, []);
 
   const clickButton = async () => {
@@ -77,16 +75,6 @@ export default function Home() {
     }
   };
 
-  const speak = () => {
-    const talk = new SpeechSynthesisUtterance(
-      "Hello there! I'm your flight booking assistant! How can I help you?"
-    );
-
-    const voices = speechSynthesis.getVoices();
-    talk.voice = voices[2];
-
-    speechSynthesis.speak(talk);
-  };
 
   return (
     <div className="min-h-screen bg-[#25406e] text-white relative overflow-hidden font-sans">
@@ -131,28 +119,7 @@ export default function Home() {
 
           <div className="flex flex-col items-center">
             {/* Circular Button with animations */}
-            <button
-              className="group relative w-[400px] h-[400px] flex-shrink-0 rounded-full focus:outline-none focus:ring-2 focus:ring-[#6e93dd] focus:ring-offset-4 focus:ring-offset-[#25406e] overflow-hidden"
-              aria-label="Begin flight assistance"
-              onClick={clickButton} // Attach the click handler
-            >
-              {/* Base circle */}
-              <div className="absolute inset-0 rounded-full border-4 border-[#6e93dd] bg-[#6e93dd]/20 transition-all duration-500 ease-out group-hover:bg-[#6e93dd]/30" />
-
-              {/* Ripple effect circles */}
-              <div className="absolute inset-0 rounded-full border-4 border-[#6e93dd] opacity-0 scale-50 group-hover:scale-100 group-hover:opacity-20 transition-all duration-700 ease-out" />
-              <div className="absolute inset-0 rounded-full border-4 border-[#6e93dd] opacity-0 scale-75 group-hover:scale-110 group-hover:opacity-10 transition-all duration-1000 delay-100 ease-out" />
-
-              {/* Rotating border */}
-              <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-[#6e93dd] group-hover:rotate-180 transition-all duration-1000 ease-in-out" />
-
-              {/* Pulsing inner circle */}
-              <div className="absolute inset-0 rounded-full bg-[#6e93dd]/10 group-hover:animate-pulse" />
-              {/* Add text to the center of the button */}
-              <span className="absolute inset-0 flex items-center justify-center text-white text-3xl font-bold">
-                {text}
-              </span>
-            </button>
+            <AudioRecorder/>
 
             <div> 
               <img
