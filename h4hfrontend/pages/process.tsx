@@ -94,10 +94,30 @@ const Process = () => {
             </h2>
             {/* Add audience content here */}
           </section>
+        </div>
 
+        <div className="mt-24 space-y-16">
           <section>
             <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-center">
-              Our <span className="text-[#F5D3B2]">Wireframe</span>
+              Our <span className="text-[#F5D3B2]">User Flow</span>
+            </h2>
+            {/* Add wireframe content here */}
+          </section>
+        </div>
+
+        <div className="mt-24 space-y-16">
+          <section>
+            <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-center">
+              Our <span className="text-[#F5D3B2]">Wireframe and UI</span>
+            </h2>
+            {/* Add wireframe content here */}
+          </section>
+        </div>
+
+        <div className="mt-24 space-y-16">
+          <section>
+            <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-center">
+              Our <span className="text-[#F5D3B2]">Creation and Demo</span>
             </h2>
             {/* Add wireframe content here */}
           </section>
